@@ -81,6 +81,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.3"
+  morse:
+    dependency: "direct main"
+    description:
+      name: morse
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4+1"
   path:
     dependency: transitive
     description:

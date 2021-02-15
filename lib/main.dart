@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // THIRD PARTY IMPORTS
 
 // PERSONAL IMPORTS
-import 'package:morse_code_translation/MorseToTextTab.dart';
-import 'package:morse_code_translation/TextToMorseTab.dart';
+import 'package:morse_code_translation/ConversionTab.dart';
 
 final appTitle = 'Morse Code Translator';
 
 void main() => runApp(MaterialApp(
+      theme: ThemeData.dark(),
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -24,8 +24,8 @@ void main() => runApp(MaterialApp(
           ),
           body: TabBarView(
             children: [
-              TextToMorseTab(),
-              MorseToTextTab(),
+              ConversionTab(isConvertToMorse: true),
+              ConversionTab(isConvertToMorse: false),
             ],
           ),
         ),
