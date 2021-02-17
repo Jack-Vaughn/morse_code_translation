@@ -59,6 +59,18 @@ class _DeckViewState extends State<MorseToTextTab> {
                               padding: EdgeInsets.all(2.0),
                               splashColor: Colors.orange,
                             ),
+                            RaisedButton(
+                              child: Text("View Legend"),
+                              onPressed: () => {
+                                setState(() {
+                                  return Image(image: AssetImage('assets/images/morse_legend.png'));
+                                })
+                              },
+                              color: Colors.indigo,
+                              textColor: Colors.white,
+                              padding: EdgeInsets.all(2.0),
+                              splashColor: Colors.orange,
+                            ),
                           ],
                         )
                       ],

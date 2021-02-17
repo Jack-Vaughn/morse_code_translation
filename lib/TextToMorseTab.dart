@@ -7,10 +7,14 @@ class TextToMorseTab extends StatefulWidget {
 
 class _DeckViewState extends State<TextToMorseTab> {
   // DECLARE VARIABLES HERE
+  final ttmField = TextEditingController();
 
   _DeckViewState() {
-    // PLACEHOLDER
+
   }
+  clearTextInput(){
+    ttmField.clear();
+  }//end clearTextInput
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +37,7 @@ class _DeckViewState extends State<TextToMorseTab> {
                         labelText: 'Input',
                         contentPadding: const EdgeInsets.all(20.0),
                       ),
+                      controller: ttmField,
                       style: new TextStyle(
                           fontSize: 34.0,
                           color: const Color(0xFF000000),
@@ -51,15 +56,19 @@ class _DeckViewState extends State<TextToMorseTab> {
                         ),
                         RaisedButton(
                           child: Text("Clear"),
-                          onPressed: () => {},
                           color: Colors.blue,
+                          onPressed: () => {clearTextInput()},
                           textColor: Colors.white,
                           padding: EdgeInsets.all(2.0),
                           splashColor: Colors.orange,
                         ),
                         RaisedButton(
                           child: Text("View Legend"),
-                          onPressed: () => {},
+                          onPressed: () => {
+                            setState(() {
+                              return Image(image: AssetImage('assets/images/morse_legend.png'));
+                            })
+                          },// On Pressed
                           color: Colors.blue,
                           textColor: Colors.white,
                           padding: EdgeInsets.all(2.0),
