@@ -1,3 +1,15 @@
+// TextToMorseTab.dart
+// 16 February 2021
+// Morse Code Translator
+// CMSC 495 - 6381
+// UMGC
+// https://github.com/Jack-Vaughn/morse_code_translation
+//
+// Authors: Robert Rye, Michael Terry, Jack Vaughn, Adam Cunningham
+// License: 0BSD
+// Version 0.1
+// Status: Development
+
 import 'package:flutter/material.dart';
 
 class TextToMorseTab extends StatefulWidget {
@@ -9,12 +21,10 @@ class _DeckViewState extends State<TextToMorseTab> {
   // DECLARE VARIABLES HERE
   final ttmField = TextEditingController();
 
-  _DeckViewState() {
-
-  }
-  clearTextInput(){
+  _DeckViewState() {}
+  clearTextInput() {
     ttmField.clear();
-  }//end clearTextInput
+  } //end clearTextInput
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +76,11 @@ class _DeckViewState extends State<TextToMorseTab> {
                           child: Text("View Legend"),
                           onPressed: () => {
                             setState(() {
-                              return Image(image: AssetImage('assets/images/morse_legend.png'));
+                              return Image(
+                                  image: AssetImage(
+                                      'assets/images/morse_legend.png'));
                             })
-                          },// On Pressed
+                          }, // On Pressed
                           color: Colors.blue,
                           textColor: Colors.white,
                           padding: EdgeInsets.all(2.0),
