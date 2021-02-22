@@ -58,19 +58,13 @@ class _DeckViewState extends State<TextToMorseTab> {
                       children: <Widget>[
                         RaisedButton(
                           child: Text("Submit"),
-                          onPressed: () => {},
-                          color: Colors.blue,
-                          textColor: Colors.white,
+                          onPressed: () => {1 + 1},
                           padding: EdgeInsets.all(2.0),
-                          splashColor: Colors.orange,
                         ),
                         RaisedButton(
                           child: Text("Clear"),
-                          color: Colors.blue,
                           onPressed: () => {clearTextInput()},
-                          textColor: Colors.white,
                           padding: EdgeInsets.all(2.0),
-                          splashColor: Colors.orange,
                         ),
                         RaisedButton(
                           child: Text("View Legend"),
@@ -81,10 +75,7 @@ class _DeckViewState extends State<TextToMorseTab> {
                                       'assets/images/morse_legend.png'));
                             })
                           }, // On Pressed
-                          color: Colors.blue,
-                          textColor: Colors.white,
                           padding: EdgeInsets.all(2.0),
-                          splashColor: Colors.orange,
                         ),
                       ],
                     )
