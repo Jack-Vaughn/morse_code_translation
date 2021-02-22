@@ -54,7 +54,7 @@ class _DeckViewState extends State<ConversionTab> {
           children: [
             Container(
               width: 150,
-              child: ElevatedButton(
+              child: RaisedButton(
                 onPressed: () => {
                   textFieldController.value = TextEditingValue(
                     text: (widget.isConvertToMorse
@@ -75,7 +75,7 @@ class _DeckViewState extends State<ConversionTab> {
             ),
             Container(
               width: 150,
-              child: ElevatedButton(
+              child: RaisedButton(
                 onPressed: () => {textFieldController.text = ""},
                 child: Text('Clear'),
               ),
