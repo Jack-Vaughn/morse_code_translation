@@ -68,13 +68,20 @@ class _DeckViewState extends State<TextToMorseTab> {
                         ),
                         RaisedButton(
                           child: Text("View Legend"),
-                          onPressed: () => {
-                            setState(() {
-                              return Image(
-                                  image: AssetImage(
-                                      'assets/images/morse_legend.png'));
-                            })
-                          }, // On Pressed
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  insetPadding: EdgeInsets.all(10),
+                                  content: Image(
+                                    image: AssetImage(
+                                        'assets/images/morse_legend.png'),
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           padding: EdgeInsets.all(2.0),
                         ),
                       ],
