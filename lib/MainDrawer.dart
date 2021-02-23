@@ -9,6 +9,15 @@ class MainDrawer extends StatefulWidget {
 class _State extends State<MainDrawer> {
   bool isSwitched = theme.getTheme() == ThemeData.dark();
 
+  Color hexColor(String hex) {
+    hex = hex.toUpperCase().replaceAll('#', '');
+
+    if (hex.length == 6) {
+      hex = 'FF' + hex;
+    }
+    return Color(int.parse(hex, radix: 16));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -37,15 +46,16 @@ class _State extends State<MainDrawer> {
             ],
           ),
           ListTile(
-            title: Text('Ruby Red'),
+            title: Text('Ruby'),
             onTap: () {
               isSwitched = false;
               theme.setTheme(
                 ThemeData(
-                  primaryColor: Colors.red,
-                  accentColor: Colors.redAccent,
+                  primaryColor: hexColor("d90429"),
+                  accentColor: hexColor("ef233c"),
+                  canvasColor: hexColor("edf2f4"),
                   buttonTheme: ButtonThemeData(
-                    buttonColor: Colors.red,
+                    buttonColor: hexColor("2b2d42"),
                     textTheme: ButtonTextTheme.primary,
                   ),
                 ),
@@ -53,15 +63,33 @@ class _State extends State<MainDrawer> {
             },
           ),
           ListTile(
-            title: Text('Leaf Green'),
+            title: Text('Creamsicle'),
             onTap: () {
               isSwitched = false;
               theme.setTheme(
                 ThemeData(
-                  primaryColor: Colors.green,
-                  accentColor: Colors.greenAccent,
+                  primaryColor: hexColor("f3752b"),
+                  accentColor: hexColor("f79d5c"),
+                  canvasColor: hexColor("ededf4"),
                   buttonTheme: ButtonThemeData(
-                    buttonColor: Colors.green,
+                    buttonColor: hexColor("564138"),
+                    textTheme: ButtonTextTheme.primary,
+                  ),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Toothpaste'),
+            onTap: () {
+              isSwitched = false;
+              theme.setTheme(
+                ThemeData(
+                  primaryColor: hexColor("#A6ECE0"),
+                  accentColor: hexColor("#4C8577"),
+                  canvasColor: hexColor("#F8F3F2"),
+                  buttonTheme: ButtonThemeData(
+                    buttonColor: hexColor("#7ADFBB"),
                     textTheme: ButtonTextTheme.primary,
                   ),
                 ),

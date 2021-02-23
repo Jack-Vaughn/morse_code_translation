@@ -21,8 +21,10 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  morse: ^0.1.4+1
   flutter:
     sdk: flutter
+
 
 
   # The following adds the Cupertino Icons font to your application.
