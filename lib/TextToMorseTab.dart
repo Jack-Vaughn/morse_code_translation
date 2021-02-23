@@ -57,7 +57,7 @@ class _DeckViewState extends State<TextToMorseTab> {
                       controller: txtField,
                       style: new TextStyle(
                           fontSize: 34.0,
-                          color: const Color(0xFF000000),
+                          color: const Color(0xFF808080),
                           fontWeight: FontWeight.w200,
                           fontFamily: "Roboto"),
                     ),
