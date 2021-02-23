@@ -11,6 +11,7 @@
 // Status: Development
 
 import 'package:flutter/material.dart';
+import 'package:morse/morse.dart';
 
 class TextToMorseTab extends StatefulWidget {
   @override
@@ -19,12 +20,18 @@ class TextToMorseTab extends StatefulWidget {
 
 class _DeckViewState extends State<TextToMorseTab> {
   // DECLARE VARIABLES HERE
-  final ttmField = TextEditingController();
+  final txtField = TextEditingController();
+  final Morse morse = new Morse();
 
-  _DeckViewState() {}
   clearTextInput() {
-    ttmField.clear();
+    txtField.clear();
   } //end clearTextInput
+
+  void translate() {
+    setState(() {
+      txtField.text = morse.encode(txtField.text);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +54,7 @@ class _DeckViewState extends State<TextToMorseTab> {
                         labelText: 'Input',
                         contentPadding: const EdgeInsets.all(20.0),
                       ),
-                      controller: ttmField,
+                      controller: txtField,
                       style: new TextStyle(
                           fontSize: 34.0,
                           color: const Color(0xFF000000),
@@ -58,7 +65,7 @@ class _DeckViewState extends State<TextToMorseTab> {
                       children: <Widget>[
                         RaisedButton(
                           child: Text("Submit"),
-                          onPressed: () => {1 + 1},
+                          onPressed: translate,
                           padding: EdgeInsets.all(2.0),
                         ),
                         RaisedButton(
