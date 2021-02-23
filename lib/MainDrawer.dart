@@ -31,8 +31,8 @@ class _State extends State<MainDrawer> {
                         .setTheme(value ? ThemeData.dark() : ThemeData.light());
                   });
                 },
-                activeTrackColor: Colors.lightBlue,
-                activeColor: Colors.lightBlueAccent,
+                activeTrackColor: Colors.deepOrange,
+                activeColor: Colors.deepOrangeAccent,
               ),
             ],
           ),
@@ -62,6 +62,46 @@ class _State extends State<MainDrawer> {
                   accentColor: Colors.greenAccent,
                   buttonTheme: ButtonThemeData(
                     buttonColor: Colors.green,
+                    textTheme: ButtonTextTheme.primary,
+                  ),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Soul Silver'),
+            onTap: () {
+              isSwitched = false;
+              theme.setTheme(
+                ThemeData(
+                  primaryColor: Colors.grey,
+                  accentColor: Colors.blueGrey,
+                  canvasColor: Colors.grey[850],
+                  textSelectionColor: Colors.white,
+                  textTheme: TextTheme(
+                    bodyText1: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  buttonTheme: ButtonThemeData(
+                    buttonColor: Colors.black26,
+                    textTheme: ButtonTextTheme.primary,
+                  ),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Heart Gold'),
+            onTap: () {
+              isSwitched = false;
+              theme.setTheme(
+                ThemeData(
+                  primaryColor: Colors.yellowAccent,
+                  accentColor: Colors.yellow,
+                  canvasColor: Colors.amber[800],
+                  buttonTheme: ButtonThemeData(
+                    buttonColor: Colors.redAccent,
                     textTheme: ButtonTextTheme.primary,
                   ),
                 ),
