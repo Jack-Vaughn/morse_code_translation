@@ -11,6 +11,7 @@
 // Status: Development
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:morse/morse.dart';
 
 class MorseToTextTab extends StatefulWidget {
@@ -20,16 +21,18 @@ class MorseToTextTab extends StatefulWidget {
 
 class _DeckViewState extends State<MorseToTextTab> {
   // DECLARE VARIABLES HERE
-  final txtController = TextEditingController();
+  final txtControlInput = TextEditingController();
+  final txtControlOutput = TextEditingController();
   final Morse morse = new Morse();
 
   void clearTextInput() {
-    txtController.clear();
+    txtControlInput.clear();
+    txtControlOutput.clear();
   } //end clearTextInput
 
   void translate() {
     setState(() {
-      txtController.text = morse.decode(txtController.text);
+      txtControlOutput.text = morse.decode(txtControlInput.text);
     });
   }
 
@@ -48,18 +51,61 @@ class _DeckViewState extends State<MorseToTextTab> {
                   // Place the children as close to the middle of the main axis as possible
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextField(
+                      // Disables editable
+                      enabled: false,
+                      // Set size of textfield
+                      minLines: 4,
+                      maxLines: 4,
+                      // Textfield border settings
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Input',
+                        hintText: 'Output',
                         contentPadding: const EdgeInsets.all(20.0),
+                        // Copy button
+                        suffixIcon: IconButton(
+                          icon : Icon(Icons.copy),
+                          padding: EdgeInsets.fromLTRB(0, 180, 0, 0),
+                          onPressed: () => {
+                            Clipboard.setData(
+                              ClipboardData(text: txtControlOutput.text),
+                            )
+                          },
+                        )
                       ),
-                      controller: txtController,
+                      // ActionListener
+                      controller: txtControlOutput,
+                      // Textfield stylizations
                       style: new TextStyle(
                           fontSize: 34.0,
                           color: const Color(0xFF808080),
                           fontWeight: FontWeight.w200,
                           fontFamily: "Roboto"),
+                    ),
+                    // Gapped space
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      minLines: 4,
+                      maxLines: 4,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Input',
+                        contentPadding: const EdgeInsets.all(20.0),
+                      ),
+                      controller: txtControlInput,
+                      style: new TextStyle(
+                          fontSize: 34.0,
+                          color: const Color(0xFF808080),
+                          fontWeight: FontWeight.w200,
+                          fontFamily: "Roboto"),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     ButtonBar(
                       children: <Widget>[
