@@ -21,7 +21,8 @@ class TextToMorseTab extends StatefulWidget {
 
 class _DeckViewState extends State<TextToMorseTab> {
   // DECLARE VARIABLES HERE
-  final txtField = TextEditingController();
+  final txtInputControl = TextEditingController();
+  final txtOutputControl = TextEditingController();
   final Morse morse = new Morse();
   bool submitted = false;
 
@@ -29,14 +30,15 @@ class _DeckViewState extends State<TextToMorseTab> {
     setState(() {
       submitted = false;
     });
-    txtField.clear();
+    txtInputControl.clear();
+    txtOutputControl.clear();
   } //end clearTextInput
 
   void translate() {
     setState(() {
       submitted = true;
     });
-    txtField.text = morse.encode(txtField.text);
+    txtOutputControl.text = morse.encode(txtInputControl.text);
   }
 
   @override
@@ -55,12 +57,38 @@ class _DeckViewState extends State<TextToMorseTab> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 TextField(
+                  readOnly: true,
+                  minLines: 4,
+                  maxLines: 4,
+                  controller: txtOutputControl,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Output',
+                      contentPadding: const EdgeInsets.all(20.0),
+                      suffixIcon: IconButton(
+                        icon : Icon(Icons.copy),
+                        padding: EdgeInsets.fromLTRB(0, 180, 0, 12),
+                        onPressed: () => {
+
+                        },
+                      )
+                  ),
+                  style: new TextStyle(
+                      fontSize: 34.0,
+                      color: const Color(0xFF808080),
+                      fontWeight: FontWeight.w200,
+                      fontFamily: "Roboto"),
+                ),
+                SizedBox(height: 15),
+                TextField(
+                  minLines: 4,
+                  maxLines: 4,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Input',
+                    hintText: 'Input',
                     contentPadding: const EdgeInsets.all(20.0),
                   ),
-                  controller: txtField,
+                  controller: txtInputControl,
                   style: new TextStyle(
                       fontSize: 34.0,
                       color: const Color(0xFF808080),
@@ -69,6 +97,12 @@ class _DeckViewState extends State<TextToMorseTab> {
                 ),
                 ButtonBar(
                   children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.lightbulb),
+                      onPressed: !submitted
+                          ? null
+                          : () => {MorseLight.flash(txtInputControl.text)},
+                    ),
                     RaisedButton(
                       child: Text("Submit"),
                       onPressed: () => {translate()},
@@ -79,12 +113,7 @@ class _DeckViewState extends State<TextToMorseTab> {
                       onPressed: () => {clearTextInput()},
                       padding: EdgeInsets.all(2.0),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.lightbulb),
-                      onPressed: !submitted
-                          ? null
-                          : () => {MorseLight.flash(txtField.text)},
-                    ),
+
                   ],
                 )
               ],

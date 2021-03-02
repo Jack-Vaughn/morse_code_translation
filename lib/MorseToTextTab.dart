@@ -11,6 +11,7 @@
 // Status: Development
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:morse/morse.dart';
 
 class MorseToTextTab extends StatefulWidget {
@@ -20,16 +21,18 @@ class MorseToTextTab extends StatefulWidget {
 
 class _DeckViewState extends State<MorseToTextTab> {
   // DECLARE VARIABLES HERE
-  final txtController = TextEditingController();
+  final txtInputControl = TextEditingController();
+  final txtOutputControl = TextEditingController();
   final Morse morse = new Morse();
 
   void clearTextInput() {
-    txtController.clear();
+    txtInputControl.clear();
+    txtOutputControl.clear();
   } //end clearTextInput
 
   void translate() {
     setState(() {
-      txtController.text = morse.decode(txtController.text);
+      txtOutputControl.text = morse.decode(txtInputControl.text);
     });
   }
 
@@ -49,12 +52,40 @@ class _DeckViewState extends State<MorseToTextTab> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     TextField(
+                      readOnly: true,
+                      minLines: 4,
+                      maxLines: 4,
+                      controller: txtOutputControl,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Input',
+                        hintText: 'Output',
+                        contentPadding: const EdgeInsets.all(20.0),
+                        suffixIcon: IconButton(
+                          icon : Icon(Icons.copy),
+                          padding: EdgeInsets.fromLTRB(0, 180, 0, 12),
+                          onPressed: () => {
+                            Clipboard.setData(
+                              ClipboardData(text: txtOutputControl.text)
+                            )
+                          },
+                        )
+                      ),
+                      style: new TextStyle(
+                          fontSize: 34.0,
+                          color: const Color(0xFF808080),
+                          fontWeight: FontWeight.w200,
+                          fontFamily: "Roboto"),
+                    ),
+                    SizedBox(height: 15),
+                    TextField(
+                      minLines: 4,
+                      maxLines: 4,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Input',
                         contentPadding: const EdgeInsets.all(20.0),
                       ),
-                      controller: txtController,
+                      controller: txtInputControl,
                       style: new TextStyle(
                           fontSize: 34.0,
                           color: const Color(0xFF808080),

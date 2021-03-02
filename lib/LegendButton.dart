@@ -30,15 +30,18 @@ class _DeckViewState extends State<LegendButton> {
               insetPadding: EdgeInsets.all(10),
               content: new SvgPicture.asset(
                 'assets/images/legend.svg',
-                height: 100.0,
-                width: 100.0,
+                height: 600.0,
+                width: 120.0,
                 color: Theme.of(context).primaryColor,
               ),
             );
           },
         );
       },
-      icon: Icon(Icons.info),
+      icon: new SvgPicture.asset(
+        'assets/images/morse.svg',
+        color: Theme.of(context).accentColor
+      ),
     );
   }
 }
