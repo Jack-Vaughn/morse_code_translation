@@ -7,8 +7,6 @@ class MainDrawer extends StatefulWidget {
 }
 
 class _State extends State<MainDrawer> {
-  bool isSwitched = theme.getTheme() == ThemeData.dark();
-
   Color hexColor(String hex) {
     hex = hex.toUpperCase().replaceAll('#', '');
 
@@ -26,29 +24,21 @@ class _State extends State<MainDrawer> {
           DrawerHeader(
             child: Text('Morse Code Translator'),
           ),
-          Row(
-            children: <Widget>[
-              Padding(padding: EdgeInsets.fromLTRB(17, 0, 0, 0)),
-              Text('Dark Mode'),
-              Padding(padding: EdgeInsets.fromLTRB(150, 0, 0, 0)),
-              Switch(
-                value: isSwitched,
-                onChanged: (value) {
-                  setState(() {
-                    isSwitched = value;
-                    theme
-                        .setTheme(value ? ThemeData.dark() : ThemeData.light());
-                  });
-                },
-                activeTrackColor: Colors.deepOrange,
-                activeColor: Colors.deepOrangeAccent,
-              ),
-            ],
+          ListTile(
+            title: Text('Default'),
+            onTap: () {
+              theme.setTheme(ThemeData.light());
+            },
+          ),
+          ListTile(
+            title: Text('Dark Mode'),
+            onTap: () {
+              theme.setTheme(ThemeData.dark());
+            },
           ),
           ListTile(
             title: Text('Ruby'),
             onTap: () {
-              isSwitched = false;
               theme.setTheme(
                 ThemeData(
                   primaryColor: hexColor("d90429"),
@@ -65,7 +55,6 @@ class _State extends State<MainDrawer> {
           ListTile(
             title: Text('Creamsicle'),
             onTap: () {
-              isSwitched = false;
               theme.setTheme(
                 ThemeData(
                   primaryColor: hexColor("f3752b"),
@@ -82,7 +71,6 @@ class _State extends State<MainDrawer> {
           ListTile(
             title: Text('Toothpaste'),
             onTap: () {
-              isSwitched = false;
               theme.setTheme(
                 ThemeData(
                   primaryColor: hexColor("#A6ECE0"),
@@ -99,7 +87,6 @@ class _State extends State<MainDrawer> {
           ListTile(
             title: Text('Regal'),
             onTap: () {
-              isSwitched = false;
               theme.setTheme(
                 ThemeData(
                   primaryColor: hexColor("#392F5A"),
@@ -116,7 +103,6 @@ class _State extends State<MainDrawer> {
           ListTile(
             title: Text('Neon'),
             onTap: () {
-              isSwitched = false;
               theme.setTheme(
                 ThemeData(
                   primaryColor: hexColor("#16F4F4"),
@@ -133,7 +119,6 @@ class _State extends State<MainDrawer> {
           ListTile(
             title: Text('Soul Silver'),
             onTap: () {
-              isSwitched = false;
               theme.setTheme(
                 ThemeData(
                   primaryColor: Colors.grey,
@@ -156,7 +141,6 @@ class _State extends State<MainDrawer> {
           ListTile(
             title: Text('Heart Gold'),
             onTap: () {
-              isSwitched = false;
               theme.setTheme(
                 ThemeData(
                   primaryColor: Colors.yellowAccent,
