@@ -97,6 +97,40 @@ class _State extends State<MainDrawer> {
             },
           ),
           ListTile(
+            title: Text('Regal'),
+            onTap: () {
+              isSwitched = false;
+              theme.setTheme(
+                ThemeData(
+                  primaryColor: hexColor("#392F5A"),
+                  accentColor: hexColor("#FF8811"),
+                  canvasColor: hexColor("#FFF8F0"),
+                  buttonTheme: ButtonThemeData(
+                    buttonColor: hexColor("#392F5A"),
+                    textTheme: ButtonTextTheme.primary,
+                  ),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Neon'),
+            onTap: () {
+              isSwitched = false;
+              theme.setTheme(
+                ThemeData(
+                  primaryColor: hexColor("#16F4F4"),
+                  accentColor: hexColor("#F607C3"),
+                  canvasColor: hexColor("#D3FFFF"),
+                  buttonTheme: ButtonThemeData(
+                    buttonColor: hexColor("#F607C3"),
+                    textTheme: ButtonTextTheme.primary,
+                  ),
+                ),
+              );
+            },
+          ),
+          ListTile(
             title: Text('Soul Silver'),
             onTap: () {
               isSwitched = false;

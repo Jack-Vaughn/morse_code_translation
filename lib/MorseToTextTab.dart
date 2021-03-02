@@ -33,6 +33,26 @@ class _DeckViewState extends State<MorseToTextTab> {
     });
   }
 
+  // Creates a timestamp
+  void timestamp() {
+    var now = new DateTime.now();
+  }
+
+  // Disables button for 1 second on OnPressed
+  void buttonLimiter(now) {
+    // Return the variable to the ternary operator?
+    bool buttonDisable = false;
+    var limiter = now.add(const Duration(seconds: 1));
+    Duration elapsed = now.difference(timestamp());
+    if (limiter > elapsed) {
+      buttonDisable = true;
+     }
+    else {
+      buttonDisable = false;
+     }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // Basic material design visual layout structure
