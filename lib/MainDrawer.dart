@@ -28,10 +28,11 @@ class _State extends State<MainDrawer> {
             title: Text('Default'),
             onTap: () {
               theme.setTheme(ThemeData.light());
+
             },
           ),
           ListTile(
-            title: Text('Dark Mode'),
+            title: Text('Midnight'),
             onTap: () {
               theme.setTheme(ThemeData.dark());
             },
@@ -41,11 +42,11 @@ class _State extends State<MainDrawer> {
             onTap: () {
               theme.setTheme(
                 ThemeData(
-                  primaryColor: hexColor("d90429"),
-                  accentColor: hexColor("ef233c"),
-                  canvasColor: hexColor("edf2f4"),
+                  primaryColor: hexColor("D90429"),
+                  accentColor: hexColor("2B2D42"),
+                  canvasColor: hexColor("EDF2F4"),
                   buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("2b2d42"),
+                    buttonColor: hexColor("2B2D42"),
                     textTheme: ButtonTextTheme.primary,
                   ),
                 ),
@@ -57,11 +58,11 @@ class _State extends State<MainDrawer> {
             onTap: () {
               theme.setTheme(
                 ThemeData(
-                  primaryColor: hexColor("f3752b"),
-                  accentColor: hexColor("f79d5c"),
-                  canvasColor: hexColor("ededf4"),
+                  primaryColor: hexColor("#FF9C59"),
+                  accentColor: hexColor("#FF580F"),
+                  canvasColor: hexColor("#ededf4"),
                   buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("564138"),
+                    buttonColor: hexColor("#FF580F"),
                     textTheme: ButtonTextTheme.primary,
                   ),
                 ),
@@ -117,21 +118,15 @@ class _State extends State<MainDrawer> {
             },
           ),
           ListTile(
-            title: Text('Soul Silver'),
+            title: Text('Gunmetal'),
             onTap: () {
               theme.setTheme(
                 ThemeData(
-                  primaryColor: Colors.grey,
-                  accentColor: Colors.blueGrey,
-                  canvasColor: Colors.grey[850],
-                  textSelectionColor: Colors.white,
-                  textTheme: TextTheme(
-                    bodyText1: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
+                  primaryColor: hexColor("#343A40"),
+                  accentColor: hexColor("#ADB5BD"),
+                  canvasColor: hexColor("#F8F9FA"),
                   buttonTheme: ButtonThemeData(
-                    buttonColor: Colors.black26,
+                    buttonColor: hexColor("#212529"),
                     textTheme: ButtonTextTheme.primary,
                   ),
                 ),
@@ -139,15 +134,15 @@ class _State extends State<MainDrawer> {
             },
           ),
           ListTile(
-            title: Text('Heart Gold'),
+            title: Text('Gold'),
             onTap: () {
               theme.setTheme(
                 ThemeData(
-                  primaryColor: Colors.yellowAccent,
-                  accentColor: Colors.yellow,
-                  canvasColor: Colors.amber[800],
+                  primaryColor: hexColor("#C39F00"),
+                  accentColor: hexColor("#008fc3"),
+                  canvasColor: hexColor("#F8F9FA"),
                   buttonTheme: ButtonThemeData(
-                    buttonColor: Colors.redAccent,
+                    buttonColor: hexColor("#C30048"),
                     textTheme: ButtonTextTheme.primary,
                   ),
                 ),
