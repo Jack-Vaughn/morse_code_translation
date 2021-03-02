@@ -24,6 +24,7 @@ dependencies:
   morse: ^0.1.4+1
   flutter:
     sdk: flutter
+  flutter_svg: 0.19.1
 
 
 
@@ -42,6 +43,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/morse_legend.png
+    - assets/images/legend.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

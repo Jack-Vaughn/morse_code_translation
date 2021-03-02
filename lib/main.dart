@@ -21,6 +21,8 @@ import 'package:morse_code_translation/TextToMorseTab.dart';
 import 'package:morse_code_translation/MainDrawer.dart';
 import 'package:morse_code_translation/config.dart';
 
+import 'LegendButton.dart';
+
 final appTitle = 'Morse Code Translator';
 
 void main() => runApp(MainApp());
@@ -47,6 +49,9 @@ class _MainAppState extends State<MainApp> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            actions: [
+              LegendButton(),
+            ],
             bottom: TabBar(
               tabs: [
                 Tab(text: 'Text to Morse'),
