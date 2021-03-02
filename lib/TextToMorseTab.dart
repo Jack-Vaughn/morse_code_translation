@@ -11,8 +11,8 @@
 // Status: Development
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:morse/morse.dart';
+import 'package:morse_code_translation/MorseLight.dart';
 
 class TextToMorseTab extends StatefulWidget {
   @override
@@ -23,15 +23,20 @@ class _DeckViewState extends State<TextToMorseTab> {
   // DECLARE VARIABLES HERE
   final txtField = TextEditingController();
   final Morse morse = new Morse();
+  bool submitted = false;
 
   clearTextInput() {
+    setState(() {
+      submitted = false;
+    });
     txtField.clear();
   } //end clearTextInput
 
   void translate() {
     setState(() {
-      txtField.text = morse.encode(txtField.text);
+      submitted = true;
     });
+    txtField.text = morse.encode(txtField.text);
   }
 
   @override
@@ -66,13 +71,19 @@ class _DeckViewState extends State<TextToMorseTab> {
                   children: <Widget>[
                     RaisedButton(
                       child: Text("Submit"),
-                      onPressed: translate,
+                      onPressed: () => {translate()},
                       padding: EdgeInsets.all(2.0),
                     ),
                     RaisedButton(
                       child: Text("Clear"),
                       onPressed: () => {clearTextInput()},
                       padding: EdgeInsets.all(2.0),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.lightbulb),
+                      onPressed: !submitted
+                          ? null
+                          : () => {MorseLight.flash(txtField.text)},
                     ),
                   ],
                 )

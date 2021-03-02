@@ -33,73 +33,49 @@ class _DeckViewState extends State<MorseToTextTab> {
     });
   }
 
-  // Creates a timestamp
-  void timestamp() {
-    var now = new DateTime.now();
-  }
-
-  // Disables button for 1 second on OnPressed
-  void buttonLimiter(now) {
-    // Return the variable to the ternary operator?
-    bool buttonDisable = false;
-    var limiter = now.add(const Duration(seconds: 1));
-    Duration elapsed = now.difference(timestamp());
-    if (limiter > elapsed) {
-      buttonDisable = true;
-     }
-    else {
-      buttonDisable = false;
-     }
-  }
-
-
   @override
   Widget build(BuildContext context) {
     // Basic material design visual layout structure
     return Scaffold(
-      // Centers content horizontally and vertically
-      body: Center(
-        child: Container(
-          // Offsets in each of the two horizontal directions
-          margin: new EdgeInsets.symmetric(horizontal: 20.0),
-          child: Center(
-            // Displays children in a vertical array
-            child: Column(
-              // Place the children as close to the middle of the main axis as possible
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Input',
-                    contentPadding: const EdgeInsets.all(20.0),
-                  ),
-                  controller: txtController,
-                  style: new TextStyle(
-                      fontSize: 34.0,
-                      color: const Color(0xFF808080),
-                      fontWeight: FontWeight.w200,
-                      fontFamily: "Roboto"),
-                ),
-                ButtonBar(
+        // Centers content horizontally and vertically
+        body: Center(
+            child: Container(
+                // Offsets in each of the two horizontal directions
+                margin: new EdgeInsets.symmetric(horizontal: 20.0),
+                child: Center(
+                    // Displays children in a vertical array
+                    child: Column(
+                  // Place the children as close to the middle of the main axis as possible
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    RaisedButton(
-                      child: Text("Submit"),
-                      onPressed: translate,
-                      padding: EdgeInsets.all(2.0),
+                    TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Input',
+                        contentPadding: const EdgeInsets.all(20.0),
+                      ),
+                      controller: txtController,
+                      style: new TextStyle(
+                          fontSize: 34.0,
+                          color: const Color(0xFF808080),
+                          fontWeight: FontWeight.w200,
+                          fontFamily: "Roboto"),
                     ),
-                    RaisedButton(
-                      child: Text("Clear"),
-                      onPressed: clearTextInput,
-                      padding: EdgeInsets.all(2.0),
-                    ),
+                    ButtonBar(
+                      children: <Widget>[
+                        RaisedButton(
+                          child: Text("Submit"),
+                          onPressed: translate,
+                          padding: EdgeInsets.all(2.0),
+                        ),
+                        RaisedButton(
+                          child: Text("Clear"),
+                          onPressed: clearTextInput,
+                          padding: EdgeInsets.all(2.0),
+                        ),
+                      ],
+                    )
                   ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                )))));
   }
 }
