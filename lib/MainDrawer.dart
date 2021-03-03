@@ -7,6 +7,8 @@ class MainDrawer extends StatefulWidget {
 }
 
 class _State extends State<MainDrawer> {
+  double _currentSliderValue = lightMultiplier.toDouble();
+
   Color hexColor(String hex) {
     hex = hex.toUpperCase().replaceAll('#', '');
 
@@ -24,131 +26,153 @@ class _State extends State<MainDrawer> {
           DrawerHeader(
             child: Text('Morse Code Translator'),
           ),
+          ExpansionTile(
+            title: Text('Themes'),
+            children: [
+              ListTile(
+                title: Text('Default'),
+                onTap: () {
+                  theme.setTheme(ThemeData.light());
+                },
+              ),
+              ListTile(
+                title: Text('Midnight'),
+                onTap: () {
+                  theme.setTheme(ThemeData.dark());
+                },
+              ),
+              ListTile(
+                title: Text('Ruby'),
+                onTap: () {
+                  theme.setTheme(
+                    ThemeData(
+                      primaryColor: hexColor("D90429"),
+                      accentColor: hexColor("2B2D42"),
+                      canvasColor: hexColor("EDF2F4"),
+                      buttonTheme: ButtonThemeData(
+                        buttonColor: hexColor("2B2D42"),
+                        textTheme: ButtonTextTheme.primary,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Creamsicle'),
+                onTap: () {
+                  theme.setTheme(
+                    ThemeData(
+                      primaryColor: hexColor("#FF9C59"),
+                      accentColor: hexColor("#FF580F"),
+                      canvasColor: hexColor("#ededf4"),
+                      buttonTheme: ButtonThemeData(
+                        buttonColor: hexColor("#FF580F"),
+                        textTheme: ButtonTextTheme.primary,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Toothpaste'),
+                onTap: () {
+                  theme.setTheme(
+                    ThemeData(
+                      primaryColor: hexColor("#A6ECE0"),
+                      accentColor: hexColor("#4C8577"),
+                      canvasColor: hexColor("#F8F3F2"),
+                      buttonTheme: ButtonThemeData(
+                        buttonColor: hexColor("#7ADFBB"),
+                        textTheme: ButtonTextTheme.primary,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Regal'),
+                onTap: () {
+                  theme.setTheme(
+                    ThemeData(
+                      primaryColor: hexColor("#392F5A"),
+                      accentColor: hexColor("#FF8811"),
+                      canvasColor: hexColor("#FFF8F0"),
+                      buttonTheme: ButtonThemeData(
+                        buttonColor: hexColor("#392F5A"),
+                        textTheme: ButtonTextTheme.primary,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Neon'),
+                onTap: () {
+                  theme.setTheme(
+                    ThemeData(
+                      primaryColor: hexColor("#16F4F4"),
+                      accentColor: hexColor("#F607C3"),
+                      canvasColor: hexColor("#D3FFFF"),
+                      buttonTheme: ButtonThemeData(
+                        buttonColor: hexColor("#F607C3"),
+                        textTheme: ButtonTextTheme.primary,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Gunmetal'),
+                onTap: () {
+                  theme.setTheme(
+                    ThemeData(
+                      primaryColor: hexColor("#343A40"),
+                      accentColor: hexColor("#ADB5BD"),
+                      canvasColor: hexColor("#F8F9FA"),
+                      buttonTheme: ButtonThemeData(
+                        buttonColor: hexColor("#212529"),
+                        textTheme: ButtonTextTheme.primary,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Gold'),
+                onTap: () {
+                  theme.setTheme(
+                    ThemeData(
+                      primaryColor: hexColor("#C39F00"),
+                      accentColor: hexColor("#008fc3"),
+                      canvasColor: hexColor("#F8F9FA"),
+                      buttonTheme: ButtonThemeData(
+                        buttonColor: hexColor("#C30048"),
+                        textTheme: ButtonTextTheme.primary,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+          Divider(),
           ListTile(
-            title: Text('Default'),
-            onTap: () {
-              theme.setTheme(ThemeData.light());
-
+            title: Text('Light Multiplier'),
+          ),
+          Slider(
+            value: _currentSliderValue,
+            min: 0,
+            max: 1000,
+            divisions: 20,
+            label: (_currentSliderValue / 1000).toString(),
+            onChanged: (double value) {
+              setState(() {
+                lightMultiplier = (value).round();
+                _currentSliderValue = lightMultiplier.toDouble();
+              });
             },
           ),
-          ListTile(
-            title: Text('Midnight'),
-            onTap: () {
-              theme.setTheme(ThemeData.dark());
-            },
-          ),
-          ListTile(
-            title: Text('Ruby'),
-            onTap: () {
-              theme.setTheme(
-                ThemeData(
-                  primaryColor: hexColor("D90429"),
-                  accentColor: hexColor("2B2D42"),
-                  canvasColor: hexColor("EDF2F4"),
-                  buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("2B2D42"),
-                    textTheme: ButtonTextTheme.primary,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Creamsicle'),
-            onTap: () {
-              theme.setTheme(
-                ThemeData(
-                  primaryColor: hexColor("#FF9C59"),
-                  accentColor: hexColor("#FF580F"),
-                  canvasColor: hexColor("#ededf4"),
-                  buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("#FF580F"),
-                    textTheme: ButtonTextTheme.primary,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Toothpaste'),
-            onTap: () {
-              theme.setTheme(
-                ThemeData(
-                  primaryColor: hexColor("#A6ECE0"),
-                  accentColor: hexColor("#4C8577"),
-                  canvasColor: hexColor("#F8F3F2"),
-                  buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("#7ADFBB"),
-                    textTheme: ButtonTextTheme.primary,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Regal'),
-            onTap: () {
-              theme.setTheme(
-                ThemeData(
-                  primaryColor: hexColor("#392F5A"),
-                  accentColor: hexColor("#FF8811"),
-                  canvasColor: hexColor("#FFF8F0"),
-                  buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("#392F5A"),
-                    textTheme: ButtonTextTheme.primary,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Neon'),
-            onTap: () {
-              theme.setTheme(
-                ThemeData(
-                  primaryColor: hexColor("#16F4F4"),
-                  accentColor: hexColor("#F607C3"),
-                  canvasColor: hexColor("#D3FFFF"),
-                  buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("#F607C3"),
-                    textTheme: ButtonTextTheme.primary,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Gunmetal'),
-            onTap: () {
-              theme.setTheme(
-                ThemeData(
-                  primaryColor: hexColor("#343A40"),
-                  accentColor: hexColor("#ADB5BD"),
-                  canvasColor: hexColor("#F8F9FA"),
-                  buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("#212529"),
-                    textTheme: ButtonTextTheme.primary,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Gold'),
-            onTap: () {
-              theme.setTheme(
-                ThemeData(
-                  primaryColor: hexColor("#C39F00"),
-                  accentColor: hexColor("#008fc3"),
-                  canvasColor: hexColor("#F8F9FA"),
-                  buttonTheme: ButtonThemeData(
-                    buttonColor: hexColor("#C30048"),
-                    textTheme: ButtonTextTheme.primary,
-                  ),
-                ),
-              );
-            },
-          ),
+          Divider(),
         ],
       ),
     );
