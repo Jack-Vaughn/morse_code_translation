@@ -43,7 +43,6 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - assets/images/morse_legend.png
     - assets/images/legend.svg
     - assets/images/morse.svg
 
