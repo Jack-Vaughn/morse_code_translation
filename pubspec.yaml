@@ -21,8 +21,12 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  morse: ^0.1.4+1
   flutter:
     sdk: flutter
+  flutter_svg: 0.19.1
+  flashlight: ^0.1.1
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -38,6 +42,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/images/legend.svg
+    - assets/images/morse.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
