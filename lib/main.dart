@@ -12,8 +12,8 @@
 
 // OFFICIAL PACKAGE IMPORTS
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
-import 'dart:async';
+//import 'package:splashscreen/splashscreen.dart';
+//import 'dart:async';
 // THIRD PARTY IMPORTS
 
 // PERSONAL IMPORTS
@@ -27,16 +27,28 @@ final appTitle = 'Morse Code Translator';
 
 void main() => runApp(MainApp());
 
-
 class MainApp extends StatefulWidget {
-  @override
+  /*
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Splash Screen',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: Splash2(),
+      debugShowCheckedModeBanner: false,
+    );
+  } // build
+  */
+   @override
   _MainAppState createState() => _MainAppState();
-}
+} // MainApp
 
 /*
 This class is meant to create a splash screen with the project's name and
 course number, as well as the school logo and our names
  */
+/*
 class Splash2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -51,6 +63,7 @@ class Splash2 extends StatelessWidget {
     );
   }// build
 }// class Splash2
+ */
 
 class _MainAppState extends State<MainApp> {
   @override
