@@ -12,7 +12,8 @@
 
 // OFFICIAL PACKAGE IMPORTS
 import 'package:flutter/material.dart';
-
+//import 'package:splashscreen/splashscreen.dart';
+//import 'dart:async';
 // THIRD PARTY IMPORTS
 
 // PERSONAL IMPORTS
@@ -20,15 +21,49 @@ import 'package:morse_code_translation/MorseToTextTab.dart';
 import 'package:morse_code_translation/TextToMorseTab.dart';
 import 'package:morse_code_translation/MainDrawer.dart';
 import 'package:morse_code_translation/config.dart';
+import 'LegendButton.dart';
 
 final appTitle = 'Morse Code Translator';
 
 void main() => runApp(MainApp());
 
 class MainApp extends StatefulWidget {
-  @override
+  /*
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Splash Screen',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: Splash2(),
+      debugShowCheckedModeBanner: false,
+    );
+  } // build
+  */
+   @override
   _MainAppState createState() => _MainAppState();
-}
+} // MainApp
+
+/*
+This class is meant to create a splash screen with the project's name and
+course number, as well as the school logo and our names
+ */
+/*
+class Splash2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 6,
+      navigateAfterSeconds: new _MainAppState(),
+      title: new Text('CMSC 495 Project',textScaleFactor: 2,),
+      image: new Image.network('https://upload.wikimedia.org/wikipedia/en/0/0d/Umgc-color-seal-500x500_201909301221.png'),
+      loadingText: Text("Loading"),
+      photoSize: 100.0,
+      loaderColor: Colors.blue,
+    );
+  }// build
+}// class Splash2
+ */
 
 class _MainAppState extends State<MainApp> {
   @override
@@ -37,7 +72,7 @@ class _MainAppState extends State<MainApp> {
     theme.addListener(() {
       setState(() {});
     });
-  }
+  } //initState
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +82,9 @@ class _MainAppState extends State<MainApp> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            actions: [
+              LegendButton(),
+            ],
             bottom: TabBar(
               tabs: [
                 Tab(text: 'Text to Morse'),
@@ -65,5 +103,5 @@ class _MainAppState extends State<MainApp> {
         ),
       ),
     );
-  }
-}
+  } // build
+} //_MainAppState
