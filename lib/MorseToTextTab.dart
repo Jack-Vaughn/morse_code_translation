@@ -11,6 +11,7 @@
 // Status: Development
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:morse/morse.dart';
 
 class MorseToTextTab extends StatefulWidget {
@@ -69,6 +70,7 @@ class _DeckViewState extends State<MorseToTextTab> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     TextField(
+                      inputFormatters: [LengthLimitingTextInputFormatter(140)],
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Input',
