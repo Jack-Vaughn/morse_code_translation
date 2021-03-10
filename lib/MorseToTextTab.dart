@@ -21,20 +21,38 @@ class MorseToTextTab extends StatefulWidget {
 
 class _DeckViewState extends State<MorseToTextTab> {
   // DECLARE VARIABLES HERE
-  final txtInputControl = TextEditingController();
-  final txtOutputControl = TextEditingController();
+  final txtController = TextEditingController();
   final Morse morse = new Morse();
 
   void clearTextInput() {
-    txtInputControl.clear();
-    txtOutputControl.clear();
+    txtController.clear();
   } //end clearTextInput
 
   void translate() {
     setState(() {
-      txtOutputControl.text = morse.decode(txtInputControl.text);
+      txtController.text = morse.decode(txtController.text);
     });
   }
+
+  // Creates a timestamp
+  void timestamp() {
+    var now = new DateTime.now();
+  }
+
+  // Disables button for 1 second on OnPressed
+  void buttonLimiter(now) {
+    // Return the variable to the ternary operator?
+    bool buttonDisable = false;
+    var limiter = now.add(const Duration(seconds: 1));
+    Duration elapsed = now.difference(timestamp());
+    if (limiter > elapsed) {
+      buttonDisable = true;
+     }
+    else {
+      buttonDisable = false;
+     }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,40 +70,13 @@ class _DeckViewState extends State<MorseToTextTab> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     TextField(
-                      readOnly: true,
-                      minLines: 4,
-                      maxLines: 4,
-                      controller: txtOutputControl,
+                      inputFormatters: [LengthLimitingTextInputFormatter(140)],
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: 'Output',
-                        contentPadding: const EdgeInsets.all(20.0),
-                        suffixIcon: IconButton(
-                          icon : Icon(Icons.copy),
-                          padding: EdgeInsets.fromLTRB(0, 180, 0, 12),
-                          onPressed: () => {
-                            Clipboard.setData(
-                              ClipboardData(text: txtOutputControl.text)
-                            )
-                          },
-                        )
-                      ),
-                      style: new TextStyle(
-                          fontSize: 34.0,
-                          color: const Color(0xFF808080),
-                          fontWeight: FontWeight.w200,
-                          fontFamily: "Roboto"),
-                    ),
-                    SizedBox(height: 15),
-                    TextField(
-                      minLines: 4,
-                      maxLines: 4,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Input',
+                        labelText: 'Input',
                         contentPadding: const EdgeInsets.all(20.0),
                       ),
-                      controller: txtInputControl,
+                      controller: txtController,
                       style: new TextStyle(
                           fontSize: 34.0,
                           color: const Color(0xFF808080),
@@ -96,12 +87,30 @@ class _DeckViewState extends State<MorseToTextTab> {
                       children: <Widget>[
                         RaisedButton(
                           child: Text("Submit"),
-                          onPressed: translate,
+                          onPressed: /*calculateWhetherDisabledReturnsBool() ? null :*/ () => translate,
                           padding: EdgeInsets.all(2.0),
                         ),
                         RaisedButton(
                           child: Text("Clear"),
                           onPressed: clearTextInput,
+                          padding: EdgeInsets.all(2.0),
+                        ),
+                        RaisedButton(
+                          child: Text("View Legend"),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  insetPadding: EdgeInsets.all(10),
+                                  content: Image(
+                                    image: AssetImage(
+                                        'assets/images/morse_legend.png'),
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           padding: EdgeInsets.all(2.0),
                         ),
                       ],

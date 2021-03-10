@@ -11,8 +11,8 @@
 // Status: Development
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:morse/morse.dart';
-import 'package:morse_code_translation/MorseLight.dart';
 
 class TextToMorseTab extends StatefulWidget {
   @override
@@ -21,106 +21,81 @@ class TextToMorseTab extends StatefulWidget {
 
 class _DeckViewState extends State<TextToMorseTab> {
   // DECLARE VARIABLES HERE
-  final txtInputControl = TextEditingController();
-  final txtOutputControl = TextEditingController();
+  final txtField = TextEditingController();
   final Morse morse = new Morse();
-  bool submitted = false;
 
   clearTextInput() {
-    setState(() {
-      submitted = false;
-    });
-    txtInputControl.clear();
-    txtOutputControl.clear();
+    txtField.clear();
   } //end clearTextInput
 
   void translate() {
     setState(() {
-      submitted = true;
+      txtField.text = morse.encode(txtField.text);
     });
-    txtOutputControl.text = morse.encode(txtInputControl.text);
   }
 
   @override
   Widget build(BuildContext context) {
     // Basic material design visual layout structure
     return Scaffold(
-      // Centers content horizontally and vertically
-      body: Center(
-        child: Container(
-          // Offsets in each of the two horizontal directions
-          margin: new EdgeInsets.symmetric(horizontal: 20.0),
-          child: Center(
-            // Displays children in a vertical array
-            child: Column(
-              // Place the children as close to the middle of the main axis as possible
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TextField(
-                  readOnly: true,
-                  minLines: 4,
-                  maxLines: 4,
-                  controller: txtOutputControl,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Output',
-                      contentPadding: const EdgeInsets.all(20.0),
-                      suffixIcon: IconButton(
-                        icon : Icon(Icons.copy),
-                        padding: EdgeInsets.fromLTRB(0, 180, 0, 12),
-                        onPressed: () => {
-
-                        },
-                      )
-                  ),
-                  style: new TextStyle(
-                      fontSize: 34.0,
-                      color: const Color(0xFF808080),
-                      fontWeight: FontWeight.w200,
-                      fontFamily: "Roboto"),
-                ),
-                SizedBox(height: 15),
-                TextField(
-                  minLines: 4,
-                  maxLines: 4,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Input',
-                    contentPadding: const EdgeInsets.all(20.0),
-                  ),
-                  controller: txtInputControl,
-                  style: new TextStyle(
-                      fontSize: 34.0,
-                      color: const Color(0xFF808080),
-                      fontWeight: FontWeight.w200,
-                      fontFamily: "Roboto"),
-                ),
-                ButtonBar(
+        // Centers content horizontally and vertically
+        body: Center(
+            child: Container(
+                // Offsets in each of the two horizontal directions
+                margin: new EdgeInsets.symmetric(horizontal: 20.0),
+                child: Center(
+                    // Displays children in a vertical array
+                    child: Column(
+                  // Place the children as close to the middle of the main axis as possible
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.lightbulb),
-                      onPressed: !submitted
-                          ? null
-                          : () => {MorseLight.flash(txtInputControl.text)},
+                    TextField(
+                    inputFormatters: [LengthLimitingTextInputFormatter(140)],
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Input',
+                        contentPadding: const EdgeInsets.all(20.0),
+                      ),
+                      controller: txtField,
+                      style: new TextStyle(
+                          fontSize: 34.0,
+                          color: const Color(0xFF808080),
+                          fontWeight: FontWeight.w200,
+                          fontFamily: "Roboto"),
                     ),
-                    RaisedButton(
-                      child: Text("Submit"),
-                      onPressed: () => {translate()},
-                      padding: EdgeInsets.all(2.0),
-                    ),
-                    RaisedButton(
-                      child: Text("Clear"),
-                      onPressed: () => {clearTextInput()},
-                      padding: EdgeInsets.all(2.0),
-                    ),
-
+                    ButtonBar(
+                      children: <Widget>[
+                        RaisedButton(
+                          child: Text("Submit"),
+                          onPressed: translate,
+                          padding: EdgeInsets.all(2.0),
+                        ),
+                        RaisedButton(
+                          child: Text("Clear"),
+                          onPressed: () => {clearTextInput()},
+                          padding: EdgeInsets.all(2.0),
+                        ),
+                        RaisedButton(
+                          child: Text("View Legend"),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  insetPadding: EdgeInsets.all(10),
+                                  content: Image(
+                                    image: AssetImage(
+                                        'assets/images/morse_legend.png'),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          padding: EdgeInsets.all(2.0),
+                        ),
+                      ],
+                    )
                   ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                )))));
   }
 }
